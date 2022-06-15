@@ -8,18 +8,20 @@
 </head>
 <body>
     <h1>Send a Jitterbunk!</h1>
-    <form action="{% url 'jitterbunk:postbunk' %}" method="post">
-        {% csrf_token %}
-        <div>
-            <label for="from">From: </label>
-            <input type="text" name="from" id="from">
-        </div>
-        <div>
-            <label for="to">To: </label>
-            <input type="text" name="to" id="to">
-        </div>
-        <input type="submit" value="Send">
-    </form>
-    <a href="{% url 'jitterbunk:index' %}">Back</a>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    {% else %}
+        <form action="{% url 'jitterbunk:postbunk' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="from" value="{{ user.username }}">
+            <div>
+                <label for="to">To: </label>
+                <input type="text" name="to" id="to">
+            </div>
+            <input type="submit" value="Send">
+        </form>
+        <a href="{% url 'jitterbunk:index' %}">Back</a>
+    {% endif %}
 </body>
 </html>
