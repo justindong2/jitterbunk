@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send a Jitterbunk!</title>
+</head>
+<body>
+    <h1>Send a Jitterbunk!</h1>
+    <form action="{% url 'jitterbunk:postbunk' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="from">From: </label>
+            <input type="text" name="from" id="from">
+        </div>
+        <div>
+            <label for="to">To: </label>
+            <input type="text" name="to" id="to">
+        </div>
+        <input type="submit" value="Send">
+    </form>
+    <a href="{% url 'jitterbunk:index' %}">Back</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jitterbunk</title>
+</head>
+<body>
+    <h1>Jitterbunk Main Bunk Feed</h1>
+    <a href="{% url 'jitterbunk:sendbunk' %}">Send a Jitterbunk!</a>
+    {% for bunk in bunks %}
+    <div>
+        <h2>Bunk! <a href="{% url 'jitterbunk:personal' bunk.to_user.id %}">{{ bunk.to_user }}</a></h2>
+        <p>From: <a href="{% url 'jitterbunk:personal' bunk.from_user.id %}">{{ bunk.from_user }}</a></p>
+        <p>{{ bunk.time }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
