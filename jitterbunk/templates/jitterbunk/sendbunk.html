@@ -14,10 +14,7 @@
     {% else %}
         <form action="{% url 'jitterbunk:postbunk' %}" method="post">
             {% csrf_token %}
-            <div>
-                <label for="from">From: </label>
-                <input type="text" name="from" id="from">
-            </div>
+            <input type="hidden" name="from" value="{{ user.username }}">
             <div>
                 <label for="to">To: </label>
                 <input type="text" name="to" id="to">

@@ -14,7 +14,7 @@
     {% else %}
         <h1>Jitterbunk Main Bunk Feed</h1>
         <a href="{% url 'jitterbunk:sendbunk' %}">Send a Jitterbunk!</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'logout' %}">Logout {{ user.username }}</a>
         {% for bunk in bunks %}
         <div>
             <h2>Bunk! <a href="{% url 'jitterbunk:personal' bunk.to_user.id %}">{{ bunk.to_user }}</a></h2>
