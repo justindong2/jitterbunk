@@ -12,7 +12,8 @@ def index(request):
 
 def personal(request, user_id):
     user = get_object_or_404(User, pk=user_id)
-    bunks = Bunk.objects.filter(to_user__id=user_id)
+    # bunks = Bunk.objects.filter(to_user__id=user_id)
+    bunks = user.recipient.all()
     return render(request, 'jitterbunk/personal.html', {'user': user, 'bunks': bunks})
 
 def sendbunk(request):
