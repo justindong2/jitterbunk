@@ -1,0 +1,15 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.bunk-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px;
+}
+
+.bunk {
+    border: 1px solid black;
+    margin: 8px;
+    padding: 8px;
+}
