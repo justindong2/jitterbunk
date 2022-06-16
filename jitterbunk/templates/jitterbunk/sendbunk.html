@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send a Jitterbunk!</title>
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Send a Jitterbunk!</h1>
@@ -23,5 +24,10 @@
         </form>
         <a href="{% url 'jitterbunk:index' %}">Back</a>
     {% endif %}
+    <script>
+        $.get( "/jitterbunk/", function( data ) {
+        console.log( "Data Loaded: " + data );
+        });
+    </script>
 </body>
 </html>

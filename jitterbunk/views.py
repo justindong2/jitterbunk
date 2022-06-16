@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils import timezone
-from .models import User, Bunk
+from django.contrib.auth.models import User
+from .models import Bunk
 
 # Create your views here.
 def index(request):
@@ -27,3 +28,8 @@ def postbunk(request):
         newbunk = Bunk(from_user=from_user, to_user=to_user, time=timezone.now())
         newbunk.save()
         return HttpResponseRedirect(reverse('jitterbunk:personal', args=(to_user.id,)))
+
+def getUsers(request, query):
+    users = User.objects.filter(username__startswith=query)
+    nameList = [user.username for user in users]
+    return JsonResponse(nameList, safe=False)
