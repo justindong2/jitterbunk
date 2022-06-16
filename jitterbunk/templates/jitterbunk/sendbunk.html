@@ -31,10 +31,7 @@
             source: (request, response) => {
                 let url = "{% url 'jitterbunk:getUsers' 'query' %}";
                 url = url.replace('query', request.term);
-                console.log(request);
                 $.get(url, (data) => {
-                    console.log(url);
-                    console.log(data);
                     response(data);
                 });
             },
