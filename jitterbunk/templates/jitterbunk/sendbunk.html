@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send a Jitterbunk!</title>
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <h1>Send a Jitterbunk!</h1>
@@ -23,5 +26,16 @@
         </form>
         <a href="{% url 'jitterbunk:index' %}">Back</a>
     {% endif %}
+    <script>
+        $('#to').autocomplete({
+            source: (request, response) => {
+                let url = "{% url 'jitterbunk:getUsers' 'query' %}";
+                url = url.replace('query', request.term);
+                $.get(url, (data) => {
+                    response(data);
+                });
+            },
+        });
+    </script>
 </body>
 </html>
